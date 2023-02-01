@@ -1,9 +1,15 @@
 
+const express = require("express");
+var app = express();
 
-console.log("Hi, Welcome to the world");
+app.get('/initial', function (req, res) {
+    res.send('{ "response": "Hello World" }');
+});
 
-console.log("Hi again");
+app.get('/ready', function (req, res) {
+    res.send('{ "response": "It works" }');
+});
 
-console.log("Hi, third time");
+app.listen(process.env.PORT || 3000);
 
-console.log("Hi, Its the fourth time now");
+module.exports = app;
