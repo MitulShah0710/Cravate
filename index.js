@@ -1,19 +1,18 @@
 const express = require("express");
-const connection = require("./db-connection/connection");
-var app = express();
-const PORT = process.env.PORT || 8080;
-app.use(express.json());
+const app = express();
+const PORT = process.env.PORT || 3000;
+const api = require("./controllers/UserController");
+const bodyParser = require("body-parser");
+const server = app.listen(PORT, function () {
+    const host = server.address().address
+    const PORT = server.address().port
+    
+    console.log(`Server listening at ${PORT}`)
+})
 
-const server = require('http').createServer(app);
+app.get("/", (req, res) => {
+    res.send("Hello World");
+})
 
-connection.connect().then(success => {
-    server.listen(PORT, () => {
-        console.log(`Server running on port ${PORT}`);
-    });
-});
-
-app.get('/initial', function (req, res) {
-    res.json("Hello World");
-});
-
-module.exports = app;
+app.use(bodyParser.json());
+app.use('/', api);

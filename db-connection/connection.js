@@ -1,19 +1,8 @@
 const mongoose = require("mongoose");
-const URL = require("./connectionString");
+const URL = require("../db-connection/connectionString");
 
-const connection = function () {
-    return new Promise((resolve, reject) => {
-        mongoose.set('strictQuery', false);
-        mongoose.connect(URL, (error, result) => {
-            if(error) {
-                return reject(error, "error")
-            }
-            console.log("DB connected successfully");
-            return resolve('success');
-        });
-    });
-}
+var url = URL
 
-module.exports = {
-    connect: connection
-}
+const connection = mongoose.createConnection(url);
+
+module.exports = connection;
