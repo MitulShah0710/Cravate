@@ -4,7 +4,7 @@ const Admin = require("../models/admin");
 const Role = require("../models/role");
 const bcrypt = require("bcrypt");
 const jsonwebtoken = require("jsonwebtoken");
-const jwtDecpde = require("jwt-decode");
+const jwtDecode = require("jwt-decode");
 const TOKEN_KEY = 'DCMXIXvHBH';
 
 // router.get("/books", async function (req, res) {
